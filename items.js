@@ -1,22 +1,39 @@
 // ============================================================
-//  EDIT YOUR PRODUCTS HERE
-//  - code:  the barcode number (EAN-13, must match the printed sheet)
-//  - name, description, price (in euros)
-//  - image: an emoji OR a path/URL to a picture, e.g. "img/prosecco.jpg"
+//  EDIT YOUR SHOP HERE
 // ============================================================
 const SHOP_NAME = "Cava Market";
 const CURRENCY = "€";
 
+// Products: barcode number (EAN-13, must match the printed sheet), name, image.
+// image = an emoji OR a path/URL to a picture, e.g. "img/prosecco.jpg"
+// Each product can be scanned only once.
 const ITEMS = [
-  { code: "8002026110017", name: "Laurel Wreath",        price: 4.99,   image: "🌿", description: "Certified organic laurel. Makes any head look 37% more academic." },
-  { code: "8002026110024", name: "Bottle of Prosecco",   price: 9.90,   image: "🍾", description: "Essential fuel for the graduation. Do not shake near the professors." },
-  { code: "8002026110031", name: "Printed Thesis",       price: 120.00, image: "📚", description: "300 pages, hard cover. Read cover-to-cover by exactly 2 people." },
-  { code: "8002026110048", name: "Espresso Supply",      price: 1.20,   image: "☕", description: "One of the 4,712 coffees that made this degree possible." },
-  { code: "8002026110055", name: "Diploma",              price: 0.01,   image: "📜", description: "Years of suffering, now in convenient A4 format." },
-  { code: "8002026110062", name: "Spritz",               price: 6.50,   image: "🍹", description: "Orange, bubbly, mandatory. Pairs well with peanuts." },
-  { code: "8002026110079", name: "Red Confetti",         price: 3.49,   image: "🍬", description: "Sugar-coated almonds in graduation red. Dentist not included." },
-  { code: "8002026110086", name: "Hours of Sleep",       price: 99.99,  image: "😴", description: "Rare item. Out of stock since freshman year." },
-  { code: "8002026110093", name: "Exam Retake",          price: 25.00,  image: "🔁", description: "Collector's edition. Some people have the whole set." },
-  { code: "8002026110109", name: "Job Offer",            price: 999.00, image: "💼", description: "Limited availability. Comes with LinkedIn notifications." },
-  { code: "8002026110116", name: "Party Hat",            price: 2.50,   image: "🎉", description: "For the dottore/dottoressa of the night. Wear it proudly." },
+  { code: "8002026110017", name: "Laurel Wreath",      image: "🌿" },
+  { code: "8002026110024", name: "Bottle of Prosecco", image: "🍾" },
+  { code: "8002026110031", name: "Printed Thesis",     image: "📚" },
+  { code: "8002026110048", name: "Espresso Supply",    image: "☕" },
+  { code: "8002026110055", name: "Diploma",            image: "📜" },
+  { code: "8002026110062", name: "Spritz",             image: "🍹" },
+  { code: "8002026110079", name: "Red Confetti",       image: "🍬" },
+  { code: "8002026110086", name: "Hours of Sleep",     image: "😴" },
+  { code: "8002026110093", name: "Exam Retake",        image: "🔁" },
+  { code: "8002026110109", name: "Job Offer",          image: "💼" },
+  { code: "8002026110116", name: "Party Hat",          image: "🎉" },
+];
+
+// Prices by SCAN ORDER, not by product: the 1st item scanned (whichever it is)
+// costs PRICES[0], the 2nd costs PRICES[1], and so on.
+// Running totals: after 9 scans = €88.50, after 10 = €103.40, after 11 = €113.30
+const PRICES = [
+  7.90,   // 1st scan  -> total   7.90
+  12.50,  // 2nd scan  -> total  20.40
+  4.20,   // 3rd scan  -> total  24.60
+  15.00,  // 4th scan  -> total  39.60
+  9.90,   // 5th scan  -> total  49.50
+  11.40,  // 6th scan  -> total  60.90
+  6.30,   // 7th scan  -> total  67.20
+  13.70,  // 8th scan  -> total  80.90
+  7.60,   // 9th scan  -> total  88.50
+  14.90,  // 10th scan -> total 103.40
+  9.90,   // 11th scan -> total 113.30
 ];

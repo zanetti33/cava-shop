@@ -2,8 +2,11 @@
   const $ = (id) => document.getElementById(id);
   const byCode = Object.fromEntries(ITEMS.map((i) => [i.code, i]));
   const fmt = (n) => CURRENCY + n.toFixed(2);
+  // cart = [{ code, price }] in scan order; price comes from PRICES by position
   let cart = [];
-  try { cart = JSON.parse(localStorage.getItem("cart") || "[]"); } catch (e) {}
+  try { cart = JSON.parse(localStorage.getItem("cart2") || "[]"); } catch (e) {}
+  if (!Array.isArray(cart)) cart = [];
+  const priceAt = (i) => (i < PRICES.length ? PRICES[i] : PRICES[PRICES.length - 1]);
   let scanner = null, scanning = false, lastCode = null, lastTime = 0;
 
   document.title = SHOP_NAME;
@@ -12,25 +15,23 @@
   const imgHTML = (src) =>
     /[./]/.test(src) ? `<img src="${src}" alt="">` : src;
 
-  function save() { try { localStorage.setItem("cart", JSON.stringify(cart)); } catch (e) {} }
+  function save() { try { localStorage.setItem("cart2", JSON.stringify(cart)); } catch (e) {} }
 
   function renderCart() {
-    const total = cart.reduce((s, c) => s + (byCode[c] ? byCode[c].price : 0), 0);
+    const total = cart.reduce((s, c) => s + c.price, 0);
     $("cartCount").textContent = cart.length + (cart.length === 1 ? " item" : " items");
     $("cartTotal").textContent = fmt(total);
     $("cartSum").textContent = fmt(total);
-    const counts = {};
-    cart.forEach((c) => (counts[c] = (counts[c] || 0) + 1));
     const list = $("cartList");
     list.innerHTML = "";
-    const codes = Object.keys(counts).filter((c) => byCode[c]);
-    if (!codes.length) { list.innerHTML = '<li class="empty">Your cart is empty</li>'; return; }
-    codes.forEach((c) => {
-      const it = byCode[c];
+    if (!cart.length) { list.innerHTML = '<li class="empty">Your cart is empty</li>'; return; }
+    cart.forEach((c) => {
+      const it = byCode[c.code];
+      if (!it) return;
       const li = document.createElement("li");
       li.innerHTML = `<span class="ci-img">${imgHTML(it.image)}</span>
-        <span class="ci-name">${it.name}<br><span class="ci-qty">${counts[c]} × ${fmt(it.price)}</span></span>
-        <span class="ci-price">${fmt(it.price * counts[c])}</span>`;
+        <span class="ci-name">${it.name}</span>
+        <span class="ci-price">${fmt(c.price)}</span>`;
       list.appendChild(li);
     });
   }
@@ -54,11 +55,17 @@
     if (navigator.vibrate) navigator.vibrate(120);
     const it = byCode[code];
     if (!it) { $("unknownCode").textContent = code; show("unknownModal"); return; }
-    cart.push(code); save(); renderCart(); bump();
+    if (cart.some((c) => c.code === code)) {
+      $("dImage").innerHTML = imgHTML(it.image);
+      $("dName").textContent = it.name;
+      show("dupModal");
+      return;
+    }
+    const price = priceAt(cart.length);
+    cart.push({ code, price }); save(); renderCart(); bump();
     $("pImage").innerHTML = imgHTML(it.image);
     $("pName").textContent = it.name;
-    $("pDesc").textContent = it.description;
-    $("pPrice").textContent = fmt(it.price);
+    $("pPrice").textContent = fmt(price);
     show("productModal");
   }
 
@@ -102,6 +109,7 @@
   $("stopBtn").onclick = stopScan;
   $("scanAgainBtn").onclick = () => { hide("productModal"); startScan(); };
   $("closeProductBtn").onclick = () => hide("productModal");
+  $("dupOk").onclick = () => { hide("dupModal"); startScan(); };
   $("unknownOk").onclick = () => { hide("unknownModal"); startScan(); };
   $("cartBtn").onclick = () => show("cartModal");
   $("closeCart").onclick = () => hide("cartModal");

@@ -43,7 +43,6 @@
   <div class="card pop">
     <div id="pImage" class="p-image"></div>
     <h2 id="pName"></h2>
-    <p id="pDesc" class="p-desc"></p>
     <p id="pPrice" class="p-price"></p>
     <p class="added">✓ Added to cart</p>
     <div class="row">
@@ -54,6 +53,15 @@
 </div>
 
 <!-- Unknown code popup -->
+<div id="dupModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="card pop">
+    <div id="dImage" class="p-image"></div>
+    <h2>Already in your cart</h2>
+    <p class="p-desc"><b id="dName"></b> can only be bought once.</p>
+    <div class="row"><button id="dupOk" class="primary">Scan another</button></div>
+  </div>
+</div>
+
 <div id="unknownModal" class="modal hidden" role="dialog" aria-modal="true">
   <div class="card pop">
     <div class="p-image">🤷</div>
