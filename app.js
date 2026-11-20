@@ -113,7 +113,6 @@
   $("unknownOk").onclick = () => { hide("unknownModal"); startScan(); };
   $("cartBtn").onclick = () => show("cartModal");
   $("closeCart").onclick = () => hide("cartModal");
-  $("clearCart").onclick = () => { cart = []; save(); renderCart(); };
   $("manualBtn").onclick = () => { $("manualInput").value = ""; show("manualModal"); $("manualInput").focus(); };
   $("manualCancel").onclick = () => hide("manualModal");
   $("manualOk").onclick = () => { const v = $("manualInput").value; hide("manualModal"); lastCode = null; if (v) handleCode(v); };
