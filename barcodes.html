@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barcodes to print</title>
+<style>
+  body{font-family:system-ui,sans-serif;margin:16px;color:#222;background:#fff}
+  h1{font-size:1.3rem;margin:0 0 4px}
+  p.note{color:#666;margin:0 0 16px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .tag{border:1px dashed #bbb;border-radius:10px;padding:10px;text-align:center;break-inside:avoid}
+  .tag .name{font-weight:700;margin-bottom:4px}
+  .tag svg{width:100%;height:auto;max-width:240px}
+  @media print{p.note,button{display:none} body{margin:8mm} .grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<h1>🎓 Cava Market barcodes</h1>
+<p class="note">Print this page (or show it on another screen) and scan with the app. <button onclick="print()">Print</button></p>
+<div class="grid" id="grid"></div>
+<script src="lib/JsBarcode.all.min.js"></script>
+<script src="items.js"></script>
+<script>
+  const grid = document.getElementById("grid");
+  ITEMS.forEach((it) => {
+    const d = document.createElement("div");
+    d.className = "tag";
+    d.innerHTML = `<div class="name">${it.name}</div><svg></svg>`;
+    grid.appendChild(d);
+    JsBarcode(d.querySelector("svg"), it.code, { format: "EAN13", width: 2, height: 80, fontSize: 16, margin: 10 });
+  });
+</script>
+</body>
+</html>

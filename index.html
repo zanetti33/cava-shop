@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#b3123b">
+<title>Cava Market</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">🎓</span><span id="shopName">Cava Market</span></div>
+  <button id="cartBtn" class="cart" aria-label="Open cart">
+    <span class="cart-icon">🛒</span>
+    <span class="cart-info">
+      <span id="cartCount" class="badge">0</span>
+      <span id="cartTotal" class="total">€0.00</span>
+    </span>
+  </button>
+</header>
+
+<main>
+  <section id="home" class="home">
+    <p class="hello">Welcome, shopper!</p>
+    <p class="sub">Point your camera at a product barcode to add it to your cart.</p>
+    <button id="scanBtn" class="scan-btn">
+      <span class="scan-glyph">▮▯▮▮▯▮</span>
+      <span>SCAN</span>
+    </button>
+    <button id="manualBtn" class="link-btn">Type a code instead</button>
+  </section>
+
+  <section id="scanner" class="scanner hidden">
+    <div id="reader"></div>
+    <div class="scan-line"></div>
+    <p id="scanHint" class="scan-hint">Starting camera…</p>
+    <button id="stopBtn" class="secondary">Cancel</button>
+  </section>
+</main>
+
+<!-- Product popup -->
+<div id="productModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="card pop">
+    <div id="pImage" class="p-image"></div>
+    <h2 id="pName"></h2>
+    <p id="pDesc" class="p-desc"></p>
+    <p id="pPrice" class="p-price"></p>
+    <p class="added">✓ Added to cart</p>
+    <div class="row">
+      <button id="scanAgainBtn" class="primary">Scan another</button>
+      <button id="closeProductBtn" class="secondary">Done</button>
+    </div>
+  </div>
+</div>
+
+<!-- Unknown code popup -->
+<div id="unknownModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="card pop">
+    <div class="p-image">🤷</div>
+    <h2>Unknown product</h2>
+    <p class="p-desc">Code <b id="unknownCode"></b> is not in our shop.</p>
+    <div class="row"><button id="unknownOk" class="primary">Try again</button></div>
+  </div>
+</div>
+
+<!-- Cart drawer -->
+<div id="cartModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="card drawer">
+    <h2>Your cart</h2>
+    <ul id="cartList" class="cart-list"></ul>
+    <div class="cart-sum"><span>Total</span><span id="cartSum">€0.00</span></div>
+    <div class="row">
+      <button id="clearCart" class="secondary">Empty cart</button>
+      <button id="closeCart" class="primary">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Manual entry -->
+<div id="manualModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="card pop">
+    <h2>Enter barcode</h2>
+    <input id="manualInput" inputmode="numeric" placeholder="e.g. 8002026110017">
+    <div class="row">
+      <button id="manualCancel" class="secondary">Cancel</button>
+      <button id="manualOk" class="primary">Add</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="lib/html5-qrcode.min.js"></script>
+<script src="items.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
