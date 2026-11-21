@@ -8,17 +8,17 @@ const CURRENCY = "€";
 // image = an emoji OR a path/URL to a picture, e.g. "img/prosecco.jpg"
 // Each product can be scanned only once.
 const ITEMS = [
-  { code: "8002026110017", name: "Laurel Wreath",      image: "🌿" },
-  { code: "8002026110024", name: "Bottle of Prosecco", image: "🍾" },
-  { code: "8002026110031", name: "Printed Thesis",     image: "📚" },
-  { code: "8002026110048", name: "Espresso Supply",    image: "☕" },
-  { code: "8002026110055", name: "Diploma",            image: "📜" },
-  { code: "8002026110062", name: "Spritz",             image: "🍹" },
-  { code: "8002026110079", name: "Red Confetti",       image: "🍬" },
-  { code: "8002026110086", name: "Hours of Sleep",     image: "😴" },
-  { code: "8002026110093", name: "Exam Retake",        image: "🔁" },
-  { code: "8002026110109", name: "Job Offer",          image: "💼" },
-  { code: "8002026110116", name: "Party Hat",          image: "🎉" },
+  { code: "8002026110017", name: "Coglioni pelati al chilo", image: "img/01.webp" },
+  { code: "8002026110024", name: "Farina di Gran d’oro", image: "img/02.webp" },
+  { code: "8002026110031", name: "Acqua", image: "img/03.webp" },
+  { code: "8002026110048", name: "Dio Can di Canditi", image: "img/04.webp" },
+  { code: "8002026110055", name: "Babbino morso a metà", image: "img/05.webp" },
+  { code: "8002026110062", name: "Piccolo Cristo in croce", image: "img/06.webp" },
+  { code: "8002026110079", name: "Raffaella Carrà", image: "img/07.webp" },
+  { code: "8002026110086", name: "Finocchio", image: "img/08.webp" },
+  { code: "8002026110093", name: "Cucciolone", image: "img/09.webp" },
+  { code: "8002026110109", name: "Zaffer’Ano", image: "img/10.webp" },
+  { code: "8002026110116", name: "Carne al Caffè", image: "img/11.webp" },
 ];
 
 // Prices by SCAN ORDER, not by product: the 1st item scanned (whichever it is)
