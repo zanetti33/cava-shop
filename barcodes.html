@@ -26,7 +26,7 @@
   ITEMS.forEach((it) => {
     const d = document.createElement("div");
     d.className = "tag";
-    d.innerHTML = `<div class="name">${it.name}</div><svg></svg>`;
+    d.innerHTML = `<svg></svg>`;
     grid.appendChild(d);
     JsBarcode(d.querySelector("svg"), it.code, { format: "EAN13", width: 2, height: 80, fontSize: 16, margin: 10 });
   });
