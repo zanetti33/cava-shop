@@ -31,8 +31,8 @@ const PRICES = [
   15.00,  // 4th scan  -> total  39.60
   9.90,   // 5th scan  -> total  49.50
   11.40,  // 6th scan  -> total  60.90
-  6.30,   // 7th scan  -> total  67.20
-  13.70,  // 8th scan  -> total  80.90
+  6.77,   // 7th scan  -> total  67.67
+  13.23,  // 8th scan  -> total  80.90
   7.60,   // 9th scan  -> total  88.50
   14.90,  // 10th scan -> total 103.40
   9.90,   // 11th scan -> total 113.30
