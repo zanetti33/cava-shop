@@ -4,7 +4,6 @@ A fake shopping app for Cava's graduation party. Press **SCAN**, allow the camer
 
 - Live app: https://zanetti33.github.io/cava-shop/
 - Printable barcodes: https://zanetti33.github.io/cava-shop/barcodes.html
-- Edit products and images in `items.js`. Prices are set by scan order in `PRICES` (9 scans = €88.50, 10 = €103.40). Each product can be scanned only once; To reset, clear the site data in the browser or use a private/incognito tab.
 
 ## Hosting
 GitHub Pages: Settings → Pages → Source "Deploy from a branch", branch `main`, folder `/ (root)`.
